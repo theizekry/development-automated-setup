@@ -10,6 +10,8 @@ sudo apt upgrade -y
 # Install common development dependencies
 echo "Installing common development dependencies..."
 
+sudo apt-get install network-manager libnss3-tools jq xsel
+
 # Essential build tools
 sudo apt install -y build-essential
 
