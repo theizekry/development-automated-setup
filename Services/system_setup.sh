@@ -26,7 +26,7 @@ sudo apt install -y python3 python3-pip
 # sudo apt install -y nodejs npm
 
 # Database systems
-sudo apt install -y mysql-server postgresql sqlite3
+sudo apt install -y mysql-server sqlite3
 
 # Other useful tools
 sudo apt install -y curl wget unzip
