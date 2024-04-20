@@ -25,9 +25,6 @@ sudo apt install -y python3 python3-pip
 # Node.js development
 # sudo apt install -y nodejs npm
 
-# PHP development
-# sudo apt install -y php php-cli
-
 # Database systems
 sudo apt install -y mysql-server postgresql sqlite3
 
