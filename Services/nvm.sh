@@ -9,7 +9,7 @@ if command -v nvm &> /dev/null; then
 fi
 
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
-nvm install --lts
 exec "$SHELL"
+nvm install --lts
 node --version
 npm --version
