@@ -16,7 +16,7 @@ php_versions=("php7.4" "php8.0" "php8.1" "php8.2" "php8.3")
 select_php_version() {
     echo "Available PHP versions:"
     for ((i=0; i<${#php_versions[@]}; i++)); do
-        echo "$(($i+1)). ${php_versions[$i]}"
+        echo "$(("$i"+1)). ${php_versions[$i]}"
     done
     echo "0. Cancel"
 
@@ -28,10 +28,8 @@ select_php_version() {
     fi
 
     if [[ $choice -gt 0 && $choice -le ${#php_versions[@]} ]]; then
-        selected_php_version="${php_versions[$(($choice-1))]}"
+        selected_php_version="${php_versions[$(("$choice"-1))]}"
         echo "Selected PHP version: $selected_php_version"
-        sudo update-alternatives --set php "/usr/bin/$selected_php_version"
-        echo "PHP $selected_php_version has been set as the default version."
         # Install PHP extensions for the selected PHP version
         install_php_extensions "$selected_php_version"
     else
@@ -44,11 +42,17 @@ select_php_version() {
 install_php_extensions() {
     local php_version="$1"
     local extensions="${php_extensions[$php_version]}"
-    echo "Installing PHP extensions for $php_version..."
-    sudo apt install software-properties-common
+
+    # Install required packages
+    # Add PHP repository and update package lists
+    sudo apt install -y software-properties-common
     sudo add-apt-repository ppa:ondrej/php
     sudo apt update
-    sudo apt install "$php_version $extensions"
+
+    echo "Installing PHP extensions for $php_version..."
+    sudo apt install -y "$php_version-fpm $extensions"
+    sudo update-alternatives --set php "/usr/bin/$php_version"
+    echo "PHP $php_version has been set as the default version."
 }
 
 # Prompt the user to select a PHP version

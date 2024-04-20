@@ -7,4 +7,4 @@ source ./Core/bootstrap.sh
 
 ./Services/nvm.sh
 
-./Services/php.sh
+bash ./Services/php.sh

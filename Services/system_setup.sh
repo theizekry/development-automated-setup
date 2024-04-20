@@ -3,7 +3,7 @@
 # Perform system updates
 perform_system_updates() {
     echo "Updating package lists..."
-    sudo apt update
+    sudo apt update -y
 
     echo "Upgrading installed packages..."
     sudo apt upgrade -y
@@ -19,6 +19,9 @@ install_common_dependencies() {
 install_build_tools() {
     echo "Installing essential build tools..."
     sudo apt install -y build-essential
+    sudo apt-get install -y software-properties-common
+    sudo add-apt-repository -y ppa:ondrej/php
+    sudo apt-get update
 }
 
 # Install version control systems
@@ -30,7 +33,7 @@ install_version_control() {
 # Install text editors
 install_text_editors() {
     echo "Installing text editors..."
-    sudo apt install -y vim
+    sudo apt install -y vim nano
 }
 
 # Install Python development tools
