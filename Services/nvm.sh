@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 echo "Installing Node Package Manager ( NVM ) with use Latest node version ..."
 
 # Check if NVM is already installed

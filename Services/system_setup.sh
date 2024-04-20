@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 # Perform system updates
 perform_system_updates() {
@@ -19,9 +19,6 @@ install_common_dependencies() {
 install_build_tools() {
     echo "Installing essential build tools..."
     sudo apt install -y build-essential
-    sudo apt-get install -y software-properties-common
-    sudo add-apt-repository -y ppa:ondrej/php
-    sudo apt-get update
 }
 
 # Install version control systems

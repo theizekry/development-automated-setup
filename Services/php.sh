@@ -1,5 +1,3 @@
-#!/usr/bin/env bash
-
 # Associative array of available PHP versions and their corresponding extensions
 declare -A php_extensions=(
     ["php7.4"]="php7.4-cli php7.4-common php7.4-curl php7.4-mbstring php7.4-opcache php7.4-readline php7.4-xml php7.4-json php7.4-gd php7.4-mysql php7.4-pgsql php7.4-zip php7.4-intl php7.4-ldap php7.4-imagick php7.4-gmp"
@@ -51,8 +49,14 @@ install_php_extensions() {
 
     echo "Installing PHP extensions for $php_version..."
     sudo apt install -y "$php_version-fpm $extensions"
-    sudo update-alternatives --set php "/usr/bin/$php_version"
-    echo "PHP $php_version has been set as the default version."
+
+    if command -v "$php_version" &> /dev/null; then
+        sudo update-alternatives --set php "/usr/bin/$php_version"
+        echo "PHP $php_version has been set as the default version."
+    else
+       echo "Cannot install $php_version; Skipping installation."
+       exit 0
+    fi
 }
 
 # Prompt the user to select a PHP version
